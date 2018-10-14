@@ -103,6 +103,7 @@ function newTweet() {
   }
 }
 
+//Onclick function for compose button
 function compose() {
   $(".compose-tweet").trigger("reset");
   $(".counter").text(140).css("color", "black");
@@ -114,4 +115,9 @@ function compose() {
 //Load tweets from database when DOM is ready
 $(function() {
   loadTweets();
+  //Prevent default form submission and create new Tweet
+  $(".compose-tweet").submit(function(event) {
+    event.preventDefault();
+    newTweet();
+    });
 });
