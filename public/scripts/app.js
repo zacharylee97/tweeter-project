@@ -37,7 +37,7 @@ function renderTweets(tweets) {
   //Loops through tweets
   tweets.forEach(function(element){
     //Calls createTweetElement for each tweet
-    var $tweet = createTweetElement(element);
+    const $tweet = createTweetElement(element);
     //Takes return value and prepends it to the tweets container
     $("#tweets-container").prepend($tweet);
   });
@@ -50,12 +50,13 @@ function loadTweets() {
   });
 }
 
+//FIX DATE DISPLAY
 function daysSince(date) {
   //The number of milliseconds in one day
-  var ONE_DAY = 1000 * 60 * 60 * 24;
+  const ONE_DAY = 1000 * 60 * 60 * 24;
   //Calculate the difference between date and today in milliseconds
-  var today = Date.now();
-  var difference = today - date;
+  const today = Date.now();
+  const difference = today - date;
   //Convert back to days and return
   return Math.round(difference/ONE_DAY);
 }
@@ -73,7 +74,7 @@ function dateFormat(created) {
 
 function renderNewTweet(tweet) {
   //Calls createTweetElement for new tweet
-  var $tweet = createTweetElement(tweet);
+  const $tweet = createTweetElement(tweet);
   //Takes return value and prepends it to the tweets container
   $("#tweets-container").prepend($tweet);
 }
