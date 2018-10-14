@@ -103,6 +103,14 @@ function newTweet() {
   }
 }
 
+function compose() {
+  $(".compose-tweet").trigger("reset");
+  $(".counter").text(140).css("color", "black");
+  $(".error").css("display", "none");
+  $("#new-tweet").slideToggle();
+  $(".textbox").focus();
+}
+
 //Load tweets from database when DOM is ready
 $(function() {
   loadTweets();

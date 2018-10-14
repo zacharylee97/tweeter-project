@@ -22,19 +22,8 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png" width="80px" height="80px">
       <span class="header">Tweeter</span>
-      <button class="compose"><i class="fas fa-edit"></i> Compose</button>
-      <!-- Add click function to compose button -->
-      <script>
-          $(".compose").click(function(){
-            $(".compose-tweet").trigger("reset");
-            $(".counter").text(140).css("color", "black");
-            $(".error").css("display", "none");
-            $("#new-tweet").slideToggle();
-            $(".textbox").focus();
-          });
-      </script>
+      <button class="compose" onclick="compose()"><i class="fas fa-edit"></i> Compose</button>
     </nav>
-
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section id="new-tweet">
