@@ -49,9 +49,9 @@ function loadTweets() {
   });
 }
 
-function timeSince(date) {
+function timeSince(created) {
   //Calculate seconds between now and date created
-  const seconds = Math.floor((Date.now() - date) / 1000);
+  let seconds = Math.floor((Date.now() - created) / 1000);
   //Check if created longer than a year ago
   let interval = Math.floor(seconds / 31536000);
   if (interval > 1) {
@@ -106,13 +106,13 @@ function newTweet() {
   } else if (text.length > 140) {
     $(".error").text("Tweet is too long!").slideDown();
   } else {
-    $(".error").slideUp();
     //Serialize info from form
     let str = $(".compose-tweet").serialize();
     //Post new tweet to /tweets
     $.post("/tweets", str, function(data){
       $(".compose-tweet").trigger("reset");
       $(".counter").text(140);
+      $(".error").slideUp();
       //Get new tweet from database and render tweet
       $.get("/tweets", function(data){
         let tweet = data[data.length - 1];
