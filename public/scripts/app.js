@@ -4,8 +4,7 @@ function createTweetElement(tweetData) {
   const avatar = tweetData.user.avatars.small;
   const handle = tweetData.user.handle;
   const text = tweetData.content.text;
-  const created = daysSince(tweetData.created_at);
-  const date = dateFormat(created);
+  const date = timeSince(tweetData.created_at);
 
   //Create Tweet element using jQuery
   const $tweet = $("<article>").addClass("tweet");
@@ -50,26 +49,46 @@ function loadTweets() {
   });
 }
 
-//FIX DATE DISPLAY
-function daysSince(date) {
-  //The number of milliseconds in one day
-  const ONE_DAY = 1000 * 60 * 60 * 24;
-  //Calculate the difference between date and today in milliseconds
-  const today = Date.now();
-  const difference = today - date;
-  //Convert back to days and return
-  return Math.round(difference/ONE_DAY);
-}
-
-function dateFormat(created) {
-  //Format date statement
-  let result;
-  if (created === 1) {
-    result = created + " day old";
-  } else {
-    result = created + " days old";
+function timeSince(date) {
+  //Calculate seconds between now and date created
+  const seconds = Math.floor((Date.now() - date) / 1000);
+  //Check if created longer than a year ago
+  let interval = Math.floor(seconds / 31536000);
+  if (interval > 1) {
+    return interval + " years ago";
+  } else if (interval === 1) {
+    return interval + " year ago";
   }
-  return result;
+  //Check if created longer than a month ago
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + " months ago";
+  } else if (interval === 1) {
+    return interval + " month ago";
+  }
+  //Check if created longer than a day ago
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + " days ago";
+  } else if (interval === 1) {
+    return interval + " day ago";
+  }
+  //Check if created longer than an hour ago
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + " hours ago";
+  } else if (interval === 1) {
+    return interval + " hour ago";
+  }
+  //Check if created longer than a minute ago
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + " minutes ago";
+  } else if (interval === 1) {
+    return interval + " minute ago";
+  }
+  //Tweet was just created
+  return "Just now";
 }
 
 function renderNewTweet(tweet) {
