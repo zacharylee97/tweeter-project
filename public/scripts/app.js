@@ -89,10 +89,10 @@ function newTweet() {
   } else {
     $(".error").slideUp();
     //Serialize info from form
-    let str = $(".target").serialize();
+    let str = $(".compose-tweet").serialize();
     //Post new tweet to /tweets
     $.post("/tweets", str, function(data){
-      $(".target").trigger("reset");
+      $(".compose-tweet").trigger("reset");
       $(".counter").text(140);
       //Get new tweet from database and render tweet
       $.get("/tweets", function(data){
