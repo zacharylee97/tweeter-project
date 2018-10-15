@@ -8,27 +8,22 @@ function createTweetElement(tweetData) {
 
   //Create Tweet element using jQuery
   const $tweet = $("<article>").addClass("tweet");
-
   const $tweetHeader = $("<header>").addClass("tweetHeader");
   const $avatar = $("<img>").addClass("avatar").attr("src", avatar);
   const $username = $("<p>").addClass("username").text(name);
   const $handle = $("<p>").addClass("handle").text(handle);
-  $tweetHeader.append($avatar, $username, $handle);
-
   const $text = $("<p>").addClass("text").text(text);
-
   const $footer = $("<footer>").addClass("footer");
   const $date = $("<p>").addClass("date").text(date);
   const $icons = $("<div>").addClass("icons");
   const $flag = $("<i>").addClass("fas fa-flag");
   const $retweet = $("<i>").addClass("fas fa-retweet");
   const $heart = $("<i>").addClass("fas fa-heart");
-
+  //Append all elements to $tweet
+  $tweetHeader.append($avatar, $username, $handle);
   $icons.append($flag, $retweet, $heart);
   $footer.append($date, $icons);
-
   $tweet.append($tweetHeader, $text, $footer);
-
   return $tweet;
 }
 
@@ -122,18 +117,17 @@ function newTweet() {
   }
 }
 
-//Onclick function for compose button
-function compose() {
-  $(".compose-tweet").trigger("reset");
-  $(".counter").text(140).css("color", "black");
-  $(".error").css("display", "none");
-  $("#new-tweet").slideToggle();
-  $(".textbox").focus();
-}
-
-//Load tweets from database when DOM is ready
 $(function() {
+  //Load tweets from database when DOM is ready
   loadTweets();
+  //Onclick function for compose button
+  $(".compose").click(function() {
+    $(".compose-tweet").trigger("reset");
+    $(".counter").text(140).css("color", "black");
+    $(".error").css("display", "none");
+    $("#new-tweet").slideToggle();
+    $(".textbox").focus();
+  });
   //Prevent default form submission and create new Tweet
   $(".compose-tweet").submit(function(event) {
     event.preventDefault();
