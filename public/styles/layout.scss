@@ -199,11 +199,19 @@ body {
       filter: $solid;
     }
 
-    .icons{
+    .icons {
       visibility: visible;
       margin-top: 7px;
       float: right;
       padding-right: 1em;
+
+      .heart {
+        color: $green;
+        background-color: white;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
     }
   }
 }
