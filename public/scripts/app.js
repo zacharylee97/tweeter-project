@@ -21,7 +21,9 @@ function createTweetElement(tweetData) {
   const $heart = $("<i>").addClass("fas fa-heart");
 
   //Add click function to like button
-  const $like = $("<button>").addClass("heart").append($heart);
+  const $like = $("<button>").addClass("heart")
+    .append($heart);
+
 
   //Append all elements to $tweet
   $tweetHeader.append($avatar, $username, $handle);
@@ -136,5 +138,10 @@ $(function() {
   $(".compose-tweet").submit(function(event) {
     event.preventDefault();
     newTweet();
-    });
+  });
+  //Onclick function for heart button
+  $("#tweets-container").on("click", ".heart", function() {
+    $(this).css("color", "red");
+    console.log("Liked!");
+  });
 });
