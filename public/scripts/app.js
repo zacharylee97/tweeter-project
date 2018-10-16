@@ -19,9 +19,13 @@ function createTweetElement(tweetData) {
   const $flag = $("<i>").addClass("fas fa-flag");
   const $retweet = $("<i>").addClass("fas fa-retweet");
   const $heart = $("<i>").addClass("fas fa-heart");
+
+  //Add click function to like button
+  const $like = $("<button>").addClass("heart").append($heart);
+
   //Append all elements to $tweet
   $tweetHeader.append($avatar, $username, $handle);
-  $icons.append($flag, $retweet, $heart);
+  $icons.append($flag, $retweet, $like);
   $footer.append($date, $icons);
   $tweet.append($tweetHeader, $text, $footer);
   return $tweet;
